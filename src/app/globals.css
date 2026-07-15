@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* ===== TEMA "AFTER HOURS" — paleta rojo/negro ===== */
+@theme {
+  /* Fondos */
+  --color-background: #050000;
+  --color-surface: #120000;
+  --color-surface-2: #0d0000;
+
+  /* Acento rojo */
+  --color-accent: #cc0000;
+  --color-accent-strong: #ff2200;
+  --color-accent-dim: #550000;
+
+  /* Texto */
+  --color-foreground: #f0eeee;
+  --color-muted: #888080;
+
+  /* Bordes */
+  --color-line: #2a0000;
+
+  /* Tipografía */
+  --font-display: var(--font-space-grotesk);
+
+  /* Brillo rojo reutilizable */
+  --shadow-glow: 0 0 25px rgba(204, 0, 0, 0.5);
+  --shadow-glow-strong: 0 0 40px rgba(204, 0, 0, 0.7);
+}
+
+/* ===== BASE ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-display), sans-serif;
+}
+
+/* ===== TARJETA CON EFECTO FLIP 3D (foto de perfil) ===== */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease, box-shadow 0.3s ease;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+  box-shadow: 0 0 0 3px var(--color-accent), var(--shadow-glow-strong);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Respeta a quienes prefieren menos movimiento (accesibilidad) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
