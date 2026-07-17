@@ -77,6 +77,15 @@ export default function Navbar() {
               )}
             </li>
           ))}
+          <li>
+            {/* Salta a la versión vanilla original alojada como estático. */}
+            <a
+              href="/classic"
+              className="inline-flex items-center gap-1.5 rounded-full border border-accent-dim px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-muted transition-colors hover:border-accent hover:text-accent sm:text-sm"
+            >
+              <span aria-hidden="true">🕹️</span> Versión clásica
+            </a>
+          </li>
         </ul>
       </div>
     </motion.nav>

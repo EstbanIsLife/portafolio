@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario de contacto de Jaime Esteban Huertas Leguizamo.">
+    <title>Contacto | Jaime Esteban</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <!-- Barra de navegación fija — idéntica al index para navegación coherente -->
+    <nav id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="nav-container">
+            <span class="nav-logo">JE</span>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#sobre-mi">Sobre Mí</a></li>
+                <li><a href="index.html#habilidades">Habilidades</a></li>
+                <li><a href="index.html#proyectos">Proyectos</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="contacto.html" class="active">Formulario</a></li>
+                <li><a href="/" class="nav-switch">✨ Versión moderna</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="contacto-page">
+
+        <!-- Cabecera de la página de contacto -->
+        <header class="contacto-header" id="inicio">
+            <h1>Formulario de Contacto</h1>
+            <p>Llena el formulario y me pondré en contacto contigo lo antes posible.</p>
+        </header>
+
+        <!-- Formulario de contacto completo con validación -->
+        <section id="formulario-contacto" aria-labelledby="titulo-formulario">
+            <h2 id="titulo-formulario">Envíame un mensaje</h2>
+
+            <form class="contact-form contact-form--full" id="contact-form-full" novalidate>
+
+                <label for="nombre">Nombre completo <span aria-hidden="true">*</span></label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Tu nombre completo"
+                    required
+                    aria-required="true"
+                >
+
+                <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="tucorreo@ejemplo.com"
+                    required
+                    aria-required="true"
+                >
+
+                <label for="asunto">Asunto</label>
+                <input
+                    type="text"
+                    id="asunto"
+                    name="asunto"
+                    placeholder="¿De qué se trata?"
+                >
+
+                <label for="tipo">Tipo de consulta</label>
+                <select id="tipo" name="tipo">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Proyecto">Propuesta de proyecto</option>
+                    <option value="Colaboracion">Colaboración</option>
+                    <option value="Trabajo">Oportunidad laboral</option>
+                    <option value="Otro">Otro</option>
+                </select>
+
+                <label for="mensaje">Mensaje <span aria-hidden="true">*</span></label>
+                <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    placeholder="Escribe tu mensaje aquí..."
+                    rows="6"
+                    required
+                    aria-required="true"
+                ></textarea>
+
+                <!-- Mensajes de retroalimentación del formulario -->
+                <div id="form-error" class="form-msg form-msg--error" role="alert" aria-live="polite" hidden></div>
+                <div id="form-success" class="form-msg form-msg--success" role="status" aria-live="polite" hidden></div>
+
+                <button type="submit" class="btn-primary">
+                    Enviar mensaje <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+
+            </form>
+        </section>
+
+        <!-- Alternativas de contacto directo -->
+        <section id="info-contacto" class="section-dark" aria-labelledby="titulo-info">
+            <h2 id="titulo-info">Otras formas de contactarme</h2>
+            <div class="contact-info-grid">
+
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <p><a href="mailto:Estbancolombia@gmail.com">Estbancolombia@gmail.com</a></p>
+                </div>
+
+                <div class="contact-info-item">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <p>
+                        <a href="https://github.com/estbanislife" target="_blank" rel="noopener noreferrer">
+                            github.com/estbanislife
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-info-item">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <p>
+                        <a href="https://linkedin.com/in/esteban-huertas-dev" target="_blank" rel="noopener noreferrer">
+                            LinkedIn
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Jaime Esteban Huertas. Hecho con <i class="fas fa-heart" aria-hidden="true"></i></p>
+        <div class="footer-social">
+            <a href="https://github.com/estbanislife" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://linkedin.com/in/esteban-huertas-dev" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:Estbancolombia@gmail.com" aria-label="Enviar correo electrónico">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requerimientos — Esteban Huertas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background-color: #000000;
+            color: #f0eeee;
+            padding: 60px 80px;
+            min-height: 100vh;
+        }
+
+        /* ── ENCABEZADO DEL DOCUMENTO ── */
+        .doc-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .doc-header .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #CC0000;
+            border: 1px solid #550000;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .doc-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        .doc-header h1 span {
+            color: #CC0000;
+        }
+
+        .doc-header p {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #888080;
+            letter-spacing: 1px;
+        }
+
+        /* ── BLOQUE DE TABLA ── */
+        .table-block {
+            margin-bottom: 60px;
+        }
+
+        /* Título de cada tabla */
+        .table-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .table-title .number {
+            width: 42px;
+            height: 42px;
+            background-color: #CC0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .table-title h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            border: none;
+            padding: 0;
+            display: block;
+        }
+
+        .table-title .subtitle {
+            font-size: 0.85rem;
+            color: #888080;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* ── TABLA ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #2a0000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Cabecera */
+        thead tr {
+            background-color: #CC0000;
+        }
+
+        thead th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        /* Filas */
+        tbody tr {
+            border-bottom: 1px solid #1a0000;
+            transition: background 0.2s;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #0d0000;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #080000;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody td {
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            color: #f0eeee;
+            vertical-align: middle;
+            line-height: 1.5;
+        }
+
+        /* Columna de código (RF1, RNF1...) */
+        .code {
+            font-weight: 700;
+            color: #CC0000;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            width: 80px;
+        }
+
+        /* Columna de categoría (solo tabla no funcional) */
+        .category {
+            white-space: nowrap;
+            width: 160px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid #550000;
+            color: #CC0000;
+            background-color: rgba(204, 0, 0, 0.08);
+        }
+
+        /* ── DIVISOR ENTRE TABLAS ── */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background-color: #CC0000;
+            margin: 0 auto 60px;
+            border-radius: 2px;
+        }
+
+        /* ── PIE DEL DOCUMENTO ── */
+        .doc-footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1a0000;
+            margin-top: 20px;
+        }
+
+        .doc-footer p {
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        .doc-footer span {
+            color: #CC0000;
+        }
+
+        /* ══ ESTILOS DEL MODELO DE NAVEGACIÓN ══ */
+
+        .nav-diagram {
+            background-color: #080000;
+            border: 1px solid #2a0000;
+            border-radius: 12px;
+            padding: 36px;
+        }
+
+        /* LEYENDA */
+        .legend {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #1a0000;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #888080;
+        }
+
+        .leg-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .leg-page    { border: 1px solid #CC0000; background: rgba(204,0,0,0.1); }
+        .leg-section { border: 1px solid #550000; background: rgba(204,0,0,0.04); }
+        .leg-external{ border: 1px solid #444; background: #1a1a1a; }
+
+        .leg-arrow {
+            font-size: 0.85rem;
+            color: #CC0000;
+            font-family: monospace;
+            letter-spacing: -1px;
+        }
+        .leg-dashed { color: #666; }
+
+        /* WRAPPER PRINCIPAL DEL DIAGRAMA */
+        .diagram-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 36px;
+        }
+
+        /* COLUMNAS */
+        .diagram-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .diagram-col--main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* NODO ACTOR (usuario) */
+        .node-actor {
+            background: #0d0000;
+            border: 1px solid #550000;
+            border-radius: 10px;
+            padding: 20px 16px;
+            text-align: center;
+            min-width: 90px;
+        }
+
+        .node-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .node-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #f0eeee;
+        }
+
+        /* NODO EXTERNO */
+        .node-external {
+            background: #111111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            min-width: 160px;
+        }
+
+        .node-external .node-icon { font-size: 1.6rem; }
+        .node-external .node-label { font-size: 0.9rem; font-weight: 700; color: #f0eeee; }
+        .node-sub { font-size: 0.72rem; color: #666; margin-top: 4px; word-break: break-all; }
+
+        .ext-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .ext-link-item {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            min-width: 160px;
+        }
+
+        .ext-icon { margin-right: 6px; }
+
+        /* CAJA DE PÁGINA */
+        .page-box {
+            width: 100%;
+            border: 1px solid #CC0000;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #0a0000;
+        }
+
+        .page-header {
+            background: rgba(204, 0, 0, 0.15);
+            border-bottom: 1px solid #CC0000;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-icon { font-size: 1rem; }
+
+        .page-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: monospace;
+        }
+
+        .page-tag {
+            margin-left: auto;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #CC0000;
+            background: rgba(204,0,0,0.12);
+            border: 1px solid #550000;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        .page-sections {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .section-node {
+            background: rgba(204,0,0,0.04);
+            border: 1px solid #1a0000;
+            border-left: 3px solid #550000;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            color: #c0b8b8;
+            text-align: left;
+            font-family: monospace;
+        }
+
+        .section-node--accent {
+            border-left-color: #CC0000;
+            color: #f0eeee;
+            background: rgba(204,0,0,0.08);
+        }
+
+        /* FLECHA HORIZONTAL */
+        .diagram-arrow-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 12px;
+            gap: 6px;
+        }
+
+        .arrow-h {
+            display: flex;
+            align-items: center;
+        }
+
+        .arrow-line {
+            width: 40px;
+            height: 2px;
+            background: #CC0000;
+        }
+
+        .arrow-tip {
+            color: #CC0000;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .arrow-label {
+            font-size: 0.7rem;
+            color: #666;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        /* FLECHA VERTICAL (entre páginas) */
+        .arrow-v-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 0;
+        }
+
+        .arrow-v-line {
+            width: 2px;
+            height: 28px;
+            background: linear-gradient(to bottom, #CC0000, #550000);
+        }
+
+        .arrow-v-tip {
+            color: #CC0000;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .arrow-v-label {
+            font-size: 0.7rem;
+            color: #666;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        /* LABEL DE RETORNO */
+        .return-label {
+            font-size: 0.75rem;
+            color: #555;
+            text-align: center;
+            padding: 6px 16px;
+            border: 1px dashed #2a0000;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+
+        .return-arrow { color: #CC0000; }
+
+        /* FLECHAS DOBLES (hacia externos) */
+        .arrows-double {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0 8px;
+        }
+
+        .arrow-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 0;
+        }
+
+        .arrow-dashed {
+            width: 35px;
+            height: 2px;
+            background: repeating-linear-gradient(
+                to right,
+                #550000 0px, #550000 6px,
+                transparent 6px, transparent 10px
+            );
+        }
+
+        .arrow-tip.red { color: #CC0000; }
+
+        .arrow-label-right {
+            font-size: 0.65rem;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .arrow-spacer {
+            height: 60px;
+        }
+
+        /* FLUJO DE SCROLL */
+        .scroll-flow {
+            background: #050000;
+            border: 1px solid #1a0000;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-top: 8px;
+        }
+
+        .scroll-flow-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888080;
+            margin-bottom: 16px;
+        }
+
+        .scroll-flow-nodes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .sf-box {
+            background: rgba(204,0,0,0.06);
+            border: 1px solid #2a0000;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            color: #c0b8b8;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+
+        .sf-box--red {
+            border-color: #CC0000;
+            color: #f0eeee;
+            background: rgba(204,0,0,0.12);
+        }
+
+        .sf-box--ext {
+            border-color: #333;
+            background: #111;
+            color: #888;
+        }
+
+        .sf-arrow {
+            color: #550000;
+            font-size: 0.9rem;
+        }
+
+        .red-arrow { color: #CC0000; }
+
+        .scroll-note {
+            font-size: 0.75rem;
+            color: #555;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <div class="doc-header">
+        <div class="tag">Fundamentos de Ingeniería Informática · 2026</div>
+        <h1>Especificación de <span>Requerimientos</span></h1>
+        <p>Portafolio Web Personal — Jaime Esteban Huertas Leguizamo</p>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- TABLA 1: REQUERIMIENTOS FUNCIONALES        -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="table-block">
+
+        <div class="table-title">
+            <div class="number">1</div>
+            <div>
+                <h2>Requerimientos Funcionales</h2>
+                <div class="subtitle">Lo que el sistema hace — comportamientos y funciones visibles para el usuario</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Requerimiento</th>
+                    <th>Descripción verificable</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="code">RF1</td>
+                    <td>Mostrar perfil personal</td>
+                    <td>La página muestra nombre completo, foto de perfil circular y título profesional en la sección hero.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF2</td>
+                    <td>Navegación fija entre secciones</td>
+                    <td>El menú permanece visible durante el scroll y permite ir a Inicio, Sobre Mí, Habilidades, Proyectos y Contacto.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF3</td>
+                    <td>Desplazamiento suave (scroll)</td>
+                    <td>Al hacer clic en un link del menú, la página se desplaza con animación suave hasta la sección correspondiente.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF4</td>
+                    <td>Resaltar sección activa en el menú</td>
+                    <td>El link del navbar correspondiente a la sección visible se destaca en color rojo automáticamente durante el scroll.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF5</td>
+                    <td>Mostrar habilidades técnicas</td>
+                    <td>La sección Habilidades lista las tecnologías dominadas (HTML5, CSS3, JS, Python, Git, SQL) con su ícono representativo.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF6</td>
+                    <td>Mostrar portafolio de proyectos</td>
+                    <td>La sección Proyectos muestra Iluminate, EcoFondo y Mi Web Personal con nombre, descripción y enlace a cada uno.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF7</td>
+                    <td>Formulario de contacto rápido</td>
+                    <td>El formulario en index.html recibe nombre, correo y mensaje, y al enviarse abre el cliente de correo con los datos pre-llenados.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF8</td>
+                    <td>Validación de formulario</td>
+                    <td>El formulario completo valida que los campos obligatorios estén llenos y que el correo tenga formato válido antes de enviar.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF9</td>
+                    <td>Página secundaria de contacto</td>
+                    <td>El link "Formulario" navega a contacto.html, una página independiente con campos adicionales: asunto y tipo de consulta.</td>
+                </tr>
+                <tr>
+                    <td class="code">RF10</td>
+                    <td>Efecto interactivo en la foto</td>
+                    <td>Al pasar el cursor sobre la foto de perfil se activa una animación 3D de giro que revela una imagen alternativa (easter egg).</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- ══════════════════════════════════════════════ -->
+    <!-- TABLA 2: REQUERIMIENTOS NO FUNCIONALES         -->
+    <!-- ══════════════════════════════════════════════ -->
+    <div class="table-block">
+
+        <div class="table-title">
+            <div class="number">2</div>
+            <div>
+                <h2>Requerimientos No Funcionales</h2>
+                <div class="subtitle">Atributos de calidad — cómo lo hace el sistema, no qué hace</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Categoría</th>
+                    <th>Descripción verificable</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="code">RNF1</td>
+                    <td class="category"><span class="category-badge">Rendimiento</span></td>
+                    <td>La página no usa frameworks pesados. Fuentes e íconos se cargan desde CDN con <code>preconnect</code> para reducir el tiempo de carga.</td>
+                </tr>
+                <tr>
+                    <td class="code">RNF2</td>
+                    <td class="category"><span class="category-badge">Usabilidad</span></td>
+                    <td>La interfaz ofrece feedback visual en cada interacción: hover en botones, tarjetas y links cambian de color o posición.</td>
+                </tr>
+                <tr>
+                    <td class="code">RNF3</td>
+                    <td class="category"><span class="category-badge">Compatibilidad</span></td>
+                    <td>El sitio funciona en Chrome, Firefox, Edge y Safari. Se usan prefijos <code>-webkit-</code> en propiedades críticas como backface-visibility.</td>
+                </tr>
+                <tr>
+                    <td class="code">RNF4</td>
+                    <td class="category"><span class="category-badge">Responsividad</span></td>
+                    <td>El diseño se adapta automáticamente a dispositivos móviles mediante <code>@media (max-width: 768px)</code>, reorganizando el layout en columna vertical.</td>
+                </tr>
+                <tr>
+                    <td class="code">RNF5</td>
+                    <td class="category"><span class="category-badge">Accesibilidad</span></td>
+                    <td>Se implementan atributos ARIA: <code>aria-label</code>, <code>aria-required</code>, <code>aria-hidden</code> y <code>role</code> para compatibilidad con lectores de pantalla.</td>
+                </tr>
+                <tr>
+                    <td class="code">RNF6</td>
+                    <td class="category"><span class="category-badge">Seguridad</span></td>
+                    <td>Todos los enlaces externos usan <code>rel="noopener noreferrer"</code> para prevenir ataques de tipo reverse tabnapping desde pestañas externas.</td>
+                </tr>
+                <tr>
+                    <td class="code">RNF7</td>
+                    <td class="category"><span class="category-badge">Mantenibilidad</span></td>
+                    <td>Los colores están centralizados en variables CSS (<code>:root</code>), el código está comentado por secciones y los archivos organizados en una carpeta.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- SECCIÓN 3: MODELO DE NAVEGACIÓN            -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="table-block">
+
+        <div class="table-title">
+            <div class="number">3</div>
+            <div>
+                <h2>Modelo de Navegación</h2>
+                <div class="subtitle">Flujo de páginas y secciones — cómo se mueve el usuario por el sitio</div>
+            </div>
+        </div>
+
+        <div class="nav-diagram">
+
+            <!-- LEYENDA -->
+            <div class="legend">
+                <div class="legend-item"><span class="leg-box leg-page"></span> Página HTML</div>
+                <div class="legend-item"><span class="leg-box leg-section"></span> Sección interna</div>
+                <div class="legend-item"><span class="leg-box leg-external"></span> Servicio externo</div>
+                <div class="legend-item"><span class="leg-arrow">──▶</span> Navegación directa</div>
+                <div class="legend-item"><span class="leg-arrow leg-dashed">- -▶</span> Acción del sistema</div>
+            </div>
+
+            <!-- DIAGRAMA PRINCIPAL -->
+            <div class="diagram-wrapper">
+
+                <!-- COLUMNA IZQUIERDA: USUARIO -->
+                <div class="diagram-col">
+                    <div class="node node-actor">
+                        <div class="node-icon">👤</div>
+                        <div class="node-label">Usuario</div>
+                    </div>
+                </div>
+
+                <!-- FLECHA USUARIO → INDEX -->
+                <div class="diagram-arrow-col">
+                    <div class="arrow-h">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▶</div>
+                    </div>
+                    <div class="arrow-label">Abre el sitio</div>
+                </div>
+
+                <!-- COLUMNA CENTRAL: INDEX.HTML -->
+                <div class="diagram-col diagram-col--main">
+
+                    <div class="page-box">
+                        <div class="page-header">
+                            <span class="page-icon">🗂</span>
+                            <span class="page-name">index.html</span>
+                            <span class="page-tag">Principal</span>
+                        </div>
+                        <div class="page-sections">
+                            <div class="section-node">#inicio — Hero &amp; presentación</div>
+                            <div class="section-node">#sobre-mi — Información personal</div>
+                            <div class="section-node">#habilidades — Tecnologías</div>
+                            <div class="section-node">#proyectos — Iluminate / EcoFondo / Web</div>
+                            <div class="section-node section-node--accent">#contacto — Formulario rápido</div>
+                        </div>
+                    </div>
+
+                    <!-- FLECHA HACIA ABAJO: NAV -->
+                    <div class="arrow-v-block">
+                        <div class="arrow-v-line"></div>
+                        <div class="arrow-v-tip">▼</div>
+                        <div class="arrow-v-label">Link "Formulario" en el navbar</div>
+                    </div>
+
+                    <div class="page-box">
+                        <div class="page-header">
+                            <span class="page-icon">📋</span>
+                            <span class="page-name">contacto.html</span>
+                            <span class="page-tag">Secundaria</span>
+                        </div>
+                        <div class="page-sections">
+                            <div class="section-node section-node--accent">#formulario-contacto — Formulario completo</div>
+                            <div class="section-node">#info-contacto — Email / GitHub / LinkedIn</div>
+                        </div>
+                    </div>
+
+                    <!-- FLECHA RETORNO -->
+                    <div class="return-label">
+                        <span class="return-arrow">↑</span> Navbar de contacto.html regresa a index.html
+                    </div>
+
+                </div>
+
+                <!-- FLECHA CENTRAL → EXTERNO -->
+                <div class="diagram-arrow-col">
+                    <div class="arrows-double">
+                        <div class="arrow-row">
+                            <div class="arrow-dashed"></div>
+                            <div class="arrow-tip red">▶</div>
+                            <div class="arrow-label-right">submit formulario rápido</div>
+                        </div>
+                        <div class="arrow-spacer"></div>
+                        <div class="arrow-row">
+                            <div class="arrow-dashed"></div>
+                            <div class="arrow-tip red">▶</div>
+                            <div class="arrow-label-right">submit formulario completo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMNA DERECHA: EXTERNOS -->
+                <div class="diagram-col">
+                    <div class="node node-external">
+                        <div class="node-icon">📧</div>
+                        <div class="node-label">Cliente de correo</div>
+                        <div class="node-sub">Estbancolombia@gmail.com</div>
+                    </div>
+                    <div class="ext-links">
+                        <div class="ext-link-item">
+                            <span class="ext-icon">🐙</span> GitHub
+                        </div>
+                        <div class="ext-link-item">
+                            <span class="ext-icon">💼</span> LinkedIn
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- fin diagram-wrapper -->
+
+            <!-- FLUJO DE SCROLL (debajo del diagrama) -->
+            <div class="scroll-flow">
+                <div class="scroll-flow-title">Flujo interno de scroll en index.html</div>
+                <div class="scroll-flow-nodes">
+                    <div class="sf-node">
+                        <div class="sf-box">#inicio</div>
+                    </div>
+                    <div class="sf-arrow">▶</div>
+                    <div class="sf-node">
+                        <div class="sf-box">#sobre-mi</div>
+                    </div>
+                    <div class="sf-arrow">▶</div>
+                    <div class="sf-node">
+                        <div class="sf-box">#habilidades</div>
+                    </div>
+                    <div class="sf-arrow">▶</div>
+                    <div class="sf-node">
+                        <div class="sf-box">#proyectos</div>
+                    </div>
+                    <div class="sf-arrow">▶</div>
+                    <div class="sf-node">
+                        <div class="sf-box sf-box--red">#contacto</div>
+                    </div>
+                    <div class="sf-arrow red-arrow">▶</div>
+                    <div class="sf-node">
+                        <div class="sf-box sf-box--ext">📧 Correo</div>
+                    </div>
+                </div>
+                <div class="scroll-note">El navbar detecta la sección visible y resalta el link activo automáticamente (JavaScript)</div>
+            </div>
+
+        </div><!-- fin nav-diagram -->
+
+    </div><!-- fin table-block -->
+
+
+    <!-- PIE DEL DOCUMENTO -->
+    <div class="doc-footer">
+        <p>Jaime Esteban Huertas Leguizamo &nbsp;·&nbsp; <span>Fundamentos de Ingeniería Informática</span> &nbsp;·&nbsp; 2026</p>
+    </div>
+
+</body>
+</html>
