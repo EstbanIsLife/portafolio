@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>CV — Jaime Esteban Huertas Leguizamo</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { font-family: "Segoe UI", Arial, sans-serif; color: #1a1a1a; background: #fff; }
+  .page { width: 210mm; min-height: 297mm; display: grid; grid-template-columns: 68mm 1fr; }
+
+  /* Barra lateral */
+  aside { background: #120000; color: #f0eeee; padding: 22mm 10mm; }
+  aside .name { font-size: 20pt; font-weight: 700; line-height: 1.1; color: #fff; }
+  aside .role { margin-top: 4mm; font-size: 10pt; letter-spacing: 1px; text-transform: uppercase; color: #ff5a3c; }
+  aside h3 { margin: 12mm 0 4mm; font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; color: #ff5a3c; border-bottom: 1px solid #550000; padding-bottom: 2mm; }
+  aside .contact p { font-size: 9.5pt; margin-bottom: 3mm; word-break: break-word; color: #d8d2d2; }
+  aside .skill { display: inline-block; background: #2a0000; color: #ffd7cf; font-size: 8.5pt; padding: 1.5mm 3mm; border-radius: 3mm; margin: 0 2mm 2mm 0; }
+
+  /* Contenido principal */
+  main { padding: 22mm 14mm; }
+  main h2 { font-size: 12pt; text-transform: uppercase; letter-spacing: 2px; color: #cc0000; margin: 0 0 4mm; padding-bottom: 2mm; border-bottom: 2px solid #cc0000; }
+  main section { margin-bottom: 12mm; }
+  main p.summary { font-size: 10.5pt; line-height: 1.55; color: #333; }
+  .project { margin-bottom: 7mm; }
+  .project h4 { font-size: 11pt; color: #111; }
+  .project .tag { font-size: 8.5pt; color: #cc0000; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  .project p { font-size: 9.8pt; line-height: 1.5; color: #444; margin-top: 1.5mm; }
+  .project a { font-size: 8.8pt; color: #777; text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <aside>
+      <div class="name">Jaime Esteban Huertas Leguizamo</div>
+      <div class="role">Ingeniero Informático &amp; Desarrollador</div>
+
+      <h3>Contacto</h3>
+      <div class="contact">
+        <p>Email: Estbancolombia@gmail.com</p>
+        <p>GitHub: github.com/EstbanIsLife</p>
+        <p>LinkedIn: linkedin.com/in/esteban-huertas-dev</p>
+      </div>
+
+      <h3>Habilidades</h3>
+      <div>
+        <span class="skill">HTML5</span>
+        <span class="skill">CSS3</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">TypeScript</span>
+        <span class="skill">React</span>
+        <span class="skill">Next.js</span>
+        <span class="skill">Python</span>
+        <span class="skill">SQL</span>
+        <span class="skill">Git</span>
+        <span class="skill">Tailwind CSS</span>
+      </div>
+    </aside>
+
+    <main>
+      <section>
+        <h2>Perfil</h2>
+        <p class="summary">Desarrollador apasionado por la tecnología y la programación, comprometido con crear soluciones innovadoras y de calidad. Experiencia construyendo aplicaciones web tanto en JavaScript puro como en stacks modernos (React, Next.js, TypeScript), cuidando el diseño, la accesibilidad y la experiencia de usuario.</p>
+      </section>
+
+      <section>
+        <h2>Proyectos</h2>
+
+        <div class="project">
+          <h4>Iluminate <span class="tag">· Web App</span></h4>
+          <p>Aplicación de reportes de fallas eléctricas e infraestructura, diseñada para agilizar la gestión de incidencias técnicas.</p>
+          <a href="https://github.com/EstbanIsLife/alumbrado-cali">github.com/EstbanIsLife/alumbrado-cali</a>
+        </div>
+
+        <div class="project">
+          <h4>EcoFondo <span class="tag">· Plataforma</span></h4>
+          <p>Plataforma de crowdfunding e inversión para proyectos de energías renovables, con foro colaborativo de iniciativas.</p>
+          <a href="https://github.com/EstbanIsLife/EnerFondo">github.com/EstbanIsLife/EnerFondo</a>
+        </div>
+
+        <div class="project">
+          <h4>Portafolio Personal <span class="tag">· Next.js + Vanilla</span></h4>
+          <p>Portafolio web con dos versiones intercambiables: una en HTML/CSS/JS puro y un rebuild moderno en Next.js, React, TypeScript, Tailwind y animaciones con Motion.</p>
+          <a href="https://github.com/EstbanIsLife/MiWebPersonal">github.com/EstbanIsLife/MiWebPersonal</a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
